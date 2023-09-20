@@ -33,6 +33,7 @@ jobs:
             . /opt/ros/humble/setup.sh
             echo $(pwd)
             ls
+            ls src
             colcon build
 
       - name: Test

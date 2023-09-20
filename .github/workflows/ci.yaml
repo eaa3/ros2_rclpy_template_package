@@ -12,7 +12,7 @@ jobs:
         run: |
           mkdir -p ${{github.workspace}}/src
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: src/ros2_rclpy_template_package
 

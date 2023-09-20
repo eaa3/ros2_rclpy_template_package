@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>ros2_rclpy_template_package</name>
+  <version>0.0.1</version>
+  <description>Template ROS2 rclpy package </description>
+
+  <maintainer email="ermano.arruda@gmail.com">Ermano Aruuda</maintainer>
+
+  <license>BSD</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

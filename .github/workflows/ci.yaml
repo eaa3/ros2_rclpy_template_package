@@ -1,0 +1,46 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare
+        run: |
+          mkdir -p ${{github.workspace}}/src
+
+      - uses: actions/checkout@v2
+        with:
+          path: src/ros2_rclpy_template_package
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          tags: template:humble
+          file: Dockerfile
+          push: false
+
+      - name: Build
+        uses: eaa3/docker-run-action@v3
+        with:
+          image: template:humble
+          options: -v ${{github.workspace}}/:/ros/
+          run: |
+            cd /ros
+            . /opt/ros/humble/setup.sh
+            colcon build
+
+      - name: Test
+        uses: eaa3/docker-run-action@v3
+        with:
+          image: template:humble
+          options: -v ${{github.workspace}}/:/ros/
+          run: |
+            cd /ros
+            . /opt/ros/humble/setup.sh
+            . install/setup.sh
+            colcon test
+            colcon test-result

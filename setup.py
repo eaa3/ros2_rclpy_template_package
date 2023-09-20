@@ -24,7 +24,7 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
-    description='Basic template for an rclpy package',
+    description='A simple template for an rclpy package',
     license='BSD',
     tests_require=['pytest'],
     entry_points={

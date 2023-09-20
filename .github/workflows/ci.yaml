@@ -44,3 +44,16 @@ jobs:
             . install/setup.sh
             colcon test
             colcon test-result
+            
+      - name: Upload Tests to Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results
+          path: build/*/test_results/*/*.xml
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: build/*/test_results/*/*.xml
